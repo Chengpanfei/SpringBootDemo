@@ -1,0 +1,31 @@
+server:
+  port: 8081
+
+eureka:
+  instance:
+    hostname: localhost
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+
+
+zuul:
+  routes:
+    dev:
+      path: /client/**
+      url: http://localhost:8080
+#      service-id: eureka-client
+#      stripPrefix: false
+
+ribbon:
+  eureka:
+    enabled: false
+
+
+spring:
+  application:
+    name: zuul

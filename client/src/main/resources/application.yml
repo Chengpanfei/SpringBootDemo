@@ -1,0 +1,36 @@
+#logging:
+#  file: cpf.log
+
+server:
+  port: 8080
+
+
+eureka:
+  instance:
+    hostname: localhost
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+
+
+spring:
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: none
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/Myhatis?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: 1115
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+
+  application:
+    name: eureka-client

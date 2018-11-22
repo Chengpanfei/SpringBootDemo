@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+
 @Entity
 @Table(name = "user")
 public class UserEntity {
@@ -23,10 +24,12 @@ public class UserEntity {
 
     @Override
     public String toString() {
-        return "id:" + id + "\n"
-                + "name:" + username + "\n"
-                + "email:" + email + "\n"
-                + "isAdmin:" + isAdmin + "\n";
+        return "UserEntity{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", isAdmin=" + isAdmin +
+                '}';
     }
 
     public int getId() {

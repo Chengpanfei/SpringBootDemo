@@ -2,7 +2,7 @@ package com.cpf.client.service;
 
 
 import com.cpf.client.dao.UserRepository;
-import com.cpf.client.pojo.UserEntity;
+import com.cpf.client.pojo.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +43,7 @@ public class UserServiceImp implements UserService {
     @Override
     public String getUserInfo(Integer id) {
         String result = "null";
-        Optional<UserEntity> option = userRepository.findById(id);
+        Optional<User> option = userRepository.findById(id);
         if (option.isPresent()) {
             result = option.get().toString();
         }
@@ -54,10 +54,10 @@ public class UserServiceImp implements UserService {
 
     @Override
     public String listAllUserInfo() {
-        List<UserEntity> list = userRepository.listUserEntity();
+        List<User> list = userRepository.listUserEntity();
         StringBuilder str = new StringBuilder();
 
-        for (UserEntity user : list) {
+        for (User user : list) {
             str.append(user.toString());
         }
         return str.toString();
@@ -66,7 +66,7 @@ public class UserServiceImp implements UserService {
     @Override
     public String getUserInfoByName(String name) {
 
-        UserEntity user = userRepository.findUserByName(name);
+        User user = userRepository.findUserByName(name);
         if (user != null) {
             return user.toString();
         }
@@ -74,9 +74,9 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public UserEntity getUserByName(String name) {
+    public User getUserByName(String name) {
 
-        UserEntity user = userRepository.findUserByName(name);
+        User user = userRepository.findUserByName(name);
         if (user != null) {
             return user;
         }
@@ -84,7 +84,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public void addUser(UserEntity user) {
+    public void addUser(User user) {
         userRepository.save(user);
     }
 

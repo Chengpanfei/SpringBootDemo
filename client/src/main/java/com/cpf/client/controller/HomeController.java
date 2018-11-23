@@ -1,6 +1,6 @@
 package com.cpf.client.controller;
 
-import com.cpf.client.pojo.UserEntity;
+import com.cpf.client.pojo.User;
 import com.cpf.client.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,7 +50,7 @@ public class HomeController {
 
     @GetMapping(path = "/getUser")
     @ResponseBody
-    public UserEntity getUser(
+    public User getUser(
             @RequestParam(required = false, name = "username") String name
     ) {
         return userService.getUserByName(name);
@@ -81,7 +81,7 @@ public class HomeController {
      */
     @PostMapping("/users")
     @ResponseBody
-    public String addUser(@Valid UserEntity user, BindingResult bindingResult) {
+    public String addUser(@Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return bindingResult.getFieldError().getDefaultMessage();
         } else {  //表单验证没有错误

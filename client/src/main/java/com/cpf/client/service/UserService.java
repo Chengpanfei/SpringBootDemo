@@ -1,6 +1,6 @@
 package com.cpf.client.service;
 
-import com.cpf.client.pojo.UserEntity;
+import com.cpf.client.pojo.User;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,7 +12,7 @@ public interface UserService {
 
     String getUserInfoByName(String name);
 
-    void addUser(UserEntity user);
+    void addUser(User user);
 
-    UserEntity getUserByName(String name);
+    User getUserByName(String name);
 }

@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "user")
-public class UserEntity {
+public class User {
 
     @Column(name = "id")
     @Id
@@ -24,7 +24,7 @@ public class UserEntity {
 
     @Override
     public String toString() {
-        return "UserEntity{" +
+        return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +

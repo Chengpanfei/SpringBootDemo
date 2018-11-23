@@ -14,9 +14,9 @@ public class Posts {
     private String title;
 
 
-    @ManyToOne(targetEntity = UserEntity.class)
+    @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "author")
-    private UserEntity author;
+    private User author;
 
     public long getId() {
         return id;
@@ -35,11 +35,11 @@ public class Posts {
         this.title = title;
     }
 
-    public UserEntity getAuthor() {
+    public User getAuthor() {
         return author;
     }
 
-    public void setAuthor(UserEntity author) {
+    public void setAuthor(User author) {
         this.author = author;
     }
 

@@ -4,9 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 
+/**
+ * @author CPF
+ */
 @Entity
 @Table(name = "user")
 public class User {
@@ -14,11 +18,15 @@ public class User {
     @Column(name = "id")
     @Id
     private int id;
+
     @Column(name = "name")
-    @NotNull(message = "username is required!") //用于表单验证
+    @NotNull(message = "username is required!")
     private String username;
-    @Column(name = "email")
+
+    @Column(name = "email", nullable = false)
+    @Email(message = "wrong email address!")
     private String email;
+
     @Column(name = "is_admin")
     private Boolean isAdmin;
 

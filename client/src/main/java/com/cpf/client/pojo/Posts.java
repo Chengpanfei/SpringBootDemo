@@ -2,6 +2,11 @@ package com.cpf.client.pojo;
 
 import javax.persistence.*;
 
+/**
+ * 博客文章实体类（POJO）
+ *
+ * @author CPF
+ */
 @Entity
 @Table(name = "posts")
 public class Posts {

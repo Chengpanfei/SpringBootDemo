@@ -11,24 +11,27 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The class implements the {@link UserService} Interface!
+ *
+ * <p>用户相关服务的实现类！</p>
+ *
+ * @author CPF
+ */
 @Service
-public class UserServiceImp implements UserService {
+public class UserServiceImpl implements UserService {
 
     /**
-     * The class implements the {@link UserService} Interface!
-     *
-     * <p>用户相关服务的实现类！</p>
-     */
-
-    //    IDEA不推荐使用变量注入
-    //    @Autowired
-    //    UserRepository userRepository;
-    // 使用构造器进行依赖注入
+     *  IDEA不推荐使用变量注入
+     *  //@Autowired
+     *  //UserRepository userRepository;
+     *  使用构造器进行依赖注入
+     *  */
     private final UserRepository userRepository;
-    private final Logger logger = LoggerFactory.getLogger(UserServiceImp.class);
+    private final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
-    public UserServiceImp(UserRepository repo) {
+    public UserServiceImpl(UserRepository repo) {
         this.userRepository = repo;
 
     }

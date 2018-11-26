@@ -8,10 +8,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 
-// TODO 在这里添加文档说明
-
+/**
+ * @author CPF
+ */
 @Controller
 public class HomeController {
 
@@ -81,12 +84,17 @@ public class HomeController {
      */
     @PostMapping("/users")
     @ResponseBody
-    public String addUser(@Valid User user, BindingResult bindingResult) {
+    public Map<String, Object> addUser(@Valid User user, BindingResult bindingResult) {
+        Map<String, Object> msg = new HashMap<>(2);
+
         if (bindingResult.hasErrors()) {
-            return bindingResult.getFieldError().getDefaultMessage();
+            msg.put("error", bindingResult.getFieldError().getDefaultMessage());
+            return msg;
         } else {  //表单验证没有错误
             userService.addUser(user);
-            return "Create user success!  info:" + user.toString();
+            msg.put("error", "null");
+            msg.put("user", user);
+            return msg;
         }
 
     }

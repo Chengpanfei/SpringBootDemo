@@ -23,8 +23,10 @@ public class HomeControllerTest {
 
     @Test
     public void getUser() throws Exception {
-        mvc.perform(get("/list"))
+        mvc.perform(get("/getUser?username=Tom"))
                 .andExpect(status().isOk())
                 .andDo(print());
     }
+
+
 }

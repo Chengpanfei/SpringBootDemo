@@ -9,7 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "posts")
-public class Posts {
+public class Post {
 
     @Column(name = "id")
     @Id
@@ -50,7 +50,7 @@ public class Posts {
 
     @Override
     public String toString() {
-        return "Posts{" +
+        return "Post{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", author=" + author +

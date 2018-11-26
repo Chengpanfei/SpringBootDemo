@@ -5,6 +5,8 @@ This is a Spring Cloud Project Demo! Including:
 3. eureka-client
 4. spring-jpa
 5. spring-boot
+6. spring-mvc
+
 
 # About 
 [My Github](http://www.github.com/Chengpanfei)

@@ -1,13 +1,10 @@
 package com.cpf.client.config;
 
-import com.cpf.client.filter.JwtAuthenticationFilter;
-import com.cpf.client.filter.JwtLoginFilter;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,8 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 
 @Configuration
-@EnableWebSecurity(debug = true)
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableOAuth2Sso
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public static PasswordEncoder passwordEncoder() {
@@ -47,44 +43,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
-
-                .authorizeRequests()
+        http.authorizeRequests()
                 .antMatchers("/login")
-                .permitAll()
-                .antMatchers("/list")
-                .hasAuthority("LIST")
-                .and()
-//                .formLogin()
-//        .and()
-                .addFilter(new JwtLoginFilter(authenticationManager()))
-                .addFilter(new JwtAuthenticationFilter(authenticationManager()))
-        ;
+                .permitAll();
+        super.configure(http);
 
     }
 
     /**
      * 通过builder指定认证方式，inMemory，jdbc，LDAP，自定义等
-     * 指定用户密码的来源，密码加密方式等
+     * 指定用户密码的来源，密码加密方式等，默认使用httpBasic
      *
      * @param auth builder
      * @throws Exception Exception
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        /// inMemoryAuthentication 认证
-        auth
-                .inMemoryAuthentication()
-                .withUser("root")
-                .password(passwordEncoder().encode("123456"))
-                .authorities("LIST")
-                .and()
-                .withUser("cpf")
-                .password(passwordEncoder().encode("123456"))
-                .roles("ADMIN")
-        ;
-        //使用默认认证方案，从配置文件中读取用户密码
-//        super.configure(auth);
+        super.configure(auth);
     }
 }

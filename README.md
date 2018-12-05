@@ -6,6 +6,8 @@ This is a Spring Cloud Project Demo! Including:
 4. spring-jpa
 5. spring-boot
 6. spring-mvc
+7. spring-security
+8. OAuth2
 
 
 # About 

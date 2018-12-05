@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,6 +25,18 @@ public class HomeController {
     @Autowired
     public HomeController(UserService userService) {
         this.userService = userService;
+    }
+
+    /**
+     * 显示三方认证信息
+     *
+     * @param principal 用户信息
+     * @return 用户信息
+     */
+    @GetMapping("/")
+    @ResponseBody
+    public Principal oauthUser(Principal principal) {
+        return principal;
     }
 
     /**

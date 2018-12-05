@@ -3,7 +3,31 @@
 
 server:
   port: 8080
+  servlet:
+    session:
+      cookie:
+        name: CLIENT
+    context-path: /client
+  address: www.chengpanfei.com
 
+security:
+  oauth2:
+    sso:
+      login-path: /login
+    client:
+      #      client-id: 3251341e55f28a4578d7
+      #      client-secret: ab2986e98bce4a2639abdbbf8ff563cefb9e4eac
+      #      access-token-uri: https://github.com/login/oauth/access_token
+      #      user-authorization-uri: https://github.com/login/oauth/authorize
+      client-id: client
+      client-secret: secret
+      access-token-uri: http://localhost:8081/oauth/token
+      user-authorization-uri: http://localhost:8081/oauth/authorize
+    resource:
+      #      user-info-uri: https://api.github.com/user
+      tokenInfoUri: http://localhost:8081/oauth/check_token
+      prefer-token-info: false
+      user-info-uri: http://localhost:8081/oauth/user
 
 eureka:
   instance:

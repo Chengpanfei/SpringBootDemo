@@ -45,8 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/login")
-                .permitAll();
-        super.configure(http);
+                .permitAll()
+                .antMatchers("/")
+                .hasAnyAuthority("Read Post");
 
     }
 

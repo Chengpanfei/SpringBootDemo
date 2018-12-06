@@ -1,13 +1,7 @@
 server:
   port: 8081
-  address: 127.0.0.1
   servlet:
     session:
       cookie:
         name: SEVER
 
-
-spring:
-  security:
-    user:
-      password: 123456

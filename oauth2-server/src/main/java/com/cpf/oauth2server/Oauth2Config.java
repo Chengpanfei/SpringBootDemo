@@ -1,10 +1,14 @@
 package com.cpf.oauth2server;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 
@@ -23,8 +27,8 @@ public class Oauth2Config extends AuthorizationServerConfigurerAdapter {
         clients
                 .inMemory()
                 .withClient("client")
-                .secret("{bcrypt}" + new BCryptPasswordEncoder().encode("secret"))
-                .redirectUris("http://www.chengpanfei.com:8080/client/login", "http://127.0.0.1:8080/login")
+                .secret(new BCryptPasswordEncoder().encode("secret"))
+                .redirectUris("http://www.chengpanfei.com:8080/client/login")
                 .authorizedGrantTypes("authorization_code")
                 .scopes("code")
         ;
@@ -40,5 +44,17 @@ public class Oauth2Config extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) {
         security.checkTokenAccess("permitAll");
+    }
+
+    @Configuration
+    @EnableResourceServer
+    @Order(2)
+    public class ResourceServer extends ResourceServerConfigurerAdapter {
+        @Override
+        public void configure(HttpSecurity http) throws Exception {
+            http
+                    .antMatcher("/oauth/user")
+                    .authorizeRequests().anyRequest().authenticated();
+        }
     }
 }

@@ -3,12 +3,12 @@ package com.cpf.client.controller;
 import com.cpf.client.pojo.User;
 import com.cpf.client.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,13 +30,13 @@ public class HomeController {
     /**
      * 显示三方认证信息
      *
-     * @param principal 用户信息
+     * @param authentication 用户信息
      * @return 用户信息
      */
     @GetMapping("/")
     @ResponseBody
-    public Principal oauthUser(Principal principal) {
-        return principal;
+    public Authentication oauthUser(Authentication authentication) {
+        return authentication;
     }
 
     /**

@@ -5,3 +5,8 @@ server:
       cookie:
         name: SEVER
 
+debug: true
+
+spring:
+  application:
+    name: oauth2-server

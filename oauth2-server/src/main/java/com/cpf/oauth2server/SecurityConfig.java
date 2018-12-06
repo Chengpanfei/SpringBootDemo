@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .inMemoryAuthentication()
                 .withUser("user")
                 .password(passwordEncoder().encode("123456"))
-                .authorities("Create Post", "Read Post");
+                .authorities("Create Post", "Read Post", "Delete Post");
     }
 }
 

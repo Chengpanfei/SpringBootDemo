@@ -3,9 +3,11 @@ package com.cpf.client.controller;
 import com.cpf.client.pojo.User;
 import com.cpf.client.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -48,6 +50,13 @@ public class HomeController {
     @ResponseBody
     public String sayHello() {
         return userService.getUserInfo(1);
+    }
+
+    @GetMapping(path = "test")
+    @ResponseBody
+    @PreAuthorize("hasAuthority('Delete Post')")
+    public String methodProtect() {
+        return "Congratulations! You passed the authorization test!";
     }
 
     /**
@@ -101,7 +110,10 @@ public class HomeController {
         Map<String, Object> msg = new HashMap<>(2);
 
         if (bindingResult.hasErrors()) {
-            msg.put("error", bindingResult.getFieldError().getDefaultMessage());
+            FieldError error = bindingResult.getFieldError();
+            if (error != null) {
+                msg.put("error", error.getDefaultMessage());
+            }
             return msg;
         } else {  //表单验证没有错误
             userService.addUser(user);

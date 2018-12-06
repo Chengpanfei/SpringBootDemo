@@ -1,19 +1,15 @@
 package com.cpf.oauth2server;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 
 /**
- * ClassName      Oauth2Config
+ * ClassName      Oauth2AuthConfig
  * Description    认证服务器配置
  *
  * @author CPF
@@ -21,7 +17,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
  * @date 2018/12/4 11:03
  */
 @Configuration
-public class Oauth2Config extends AuthorizationServerConfigurerAdapter {
+public class Oauth2AuthConfig extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients
@@ -46,15 +42,4 @@ public class Oauth2Config extends AuthorizationServerConfigurerAdapter {
         security.checkTokenAccess("permitAll");
     }
 
-    @Configuration
-    @EnableResourceServer
-    @Order(2)
-    public class ResourceServer extends ResourceServerConfigurerAdapter {
-        @Override
-        public void configure(HttpSecurity http) throws Exception {
-            http
-                    .antMatcher("/oauth/user")
-                    .authorizeRequests().anyRequest().authenticated();
-        }
-    }
 }

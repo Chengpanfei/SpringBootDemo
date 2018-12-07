@@ -1,4 +1,4 @@
-package com.cpf.oauth2server;
+package com.cpf.oauth2server.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -27,6 +27,8 @@ public class Oauth2AuthConfig extends AuthorizationServerConfigurerAdapter {
                 .redirectUris("http://www.chengpanfei.com:8080/client/login")
                 .authorizedGrantTypes("authorization_code")
                 .scopes("code")
+                // 可以不需要用户授权同意这一步
+                .autoApprove(true)
         ;
 
     }

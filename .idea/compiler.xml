@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="client" />
         <module name="demo" />
+        <module name="feign" />
         <module name="oauth2-server" />
         <module name="server" />
         <module name="zuul" />
@@ -18,6 +19,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="client" options="-parameters" />
       <module name="demo" options="-parameters" />
+      <module name="feign" options="-parameters" />
       <module name="oauth2-server" options="-parameters" />
       <module name="server" options="-parameters" />
       <module name="zuul" options="-parameters" />

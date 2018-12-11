@@ -1,0 +1,16 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /feign
+spring:
+  application:
+    name: fegin
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+feign:
+  hystrix:
+    enabled: true

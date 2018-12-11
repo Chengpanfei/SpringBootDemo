@@ -31,6 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated();
         http.formLogin().permitAll();
         http.logout().permitAll();
+        http.rememberMe();
     }
 
     @Override

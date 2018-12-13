@@ -24,7 +24,7 @@ public class Oauth2AuthConfig extends AuthorizationServerConfigurerAdapter {
                 .inMemory()
                 .withClient("client")
                 .secret(new BCryptPasswordEncoder().encode("secret"))
-                .redirectUris("http://www.chengpanfei.com:8080/client/login")
+                .redirectUris("http://localhost:8080/client/login")
                 .authorizedGrantTypes("authorization_code")
                 .scopes("code")
                 // 可以不需要用户授权同意这一步

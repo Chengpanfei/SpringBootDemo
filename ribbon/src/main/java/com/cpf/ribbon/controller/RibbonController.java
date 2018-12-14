@@ -1,6 +1,8 @@
 package com.cpf.ribbon.controller;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +31,7 @@ public class RibbonController {
         DEFAULT_MAP.put("result", 0);
     }
 
+    private final Logger logger = LoggerFactory.getLogger(getClass());
     private RestTemplate restTemplate;
 
     @Autowired
@@ -44,6 +47,9 @@ public class RibbonController {
         map.put("code", 0);
         map.put("msg", "success!");
         map.put("result", restTemplate.getForObject("http://eureka-client/client/add?a=1&b=2", Integer.TYPE));
+
+        logger.info("call test success!");
+
         return map;
     }
 
@@ -59,6 +65,9 @@ public class RibbonController {
 
 
     public Map<String, Object> testFallback() {
+
+        logger.info("call test failed!");
+
         return DEFAULT_MAP;
     }
 }

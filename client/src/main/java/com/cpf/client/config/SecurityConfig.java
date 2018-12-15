@@ -50,6 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers("/")
                 .hasAnyAuthority("Read Post");
+        http.csrf().disable();
 
     }
 

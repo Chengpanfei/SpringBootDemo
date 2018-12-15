@@ -1,0 +1,11 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: eureka-client
+  cloud:
+    config:
+      discovery:
+        service-id: config-server
+        enabled: true

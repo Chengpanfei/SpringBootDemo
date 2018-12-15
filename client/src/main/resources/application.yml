@@ -1,8 +1,6 @@
 #logging:
 #  file: cpf.log
-
 server:
-  port: 8080
   servlet:
     session:
       cookie:
@@ -57,6 +55,8 @@ spring:
     sampler:
       probability: 1.0
 
-
-  application:
-    name: eureka-client
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

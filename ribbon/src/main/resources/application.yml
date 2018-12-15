@@ -4,6 +4,10 @@ server:
 spring:
   application:
     name: ribbon
+  sleuth:
+    sampler:
+      probability: 1.0
+
 
 management:
   endpoints:

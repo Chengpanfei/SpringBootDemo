@@ -52,7 +52,10 @@ spring:
     username: root
     password: 1115
     driver-class-name: com.mysql.cj.jdbc.Driver
-
+  # sleuth 采样率
+  sleuth:
+    sampler:
+      probability: 1.0
 
 
   application:
